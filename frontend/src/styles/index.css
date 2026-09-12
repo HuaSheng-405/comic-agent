@@ -1,0 +1,387 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- 卡通宇宙基调 ---------- */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-space-950 font-body text-cream antialiased;
+  background-image:
+    radial-gradient(1px 1px at 18% 22%, rgba(255, 255, 255, 0.55) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 74% 12%, rgba(255, 209, 102, 0.6) 0, transparent 100%),
+    radial-gradient(1px 1px at 42% 68%, rgba(127, 216, 247, 0.55) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 58%, rgba(255, 159, 216, 0.55) 0, transparent 100%),
+    radial-gradient(1px 1px at 8% 82%, rgba(183, 166, 255, 0.6) 0, transparent 100%),
+    radial-gradient(2px 2px at 55% 40%, rgba(255, 255, 255, 0.35) 0, transparent 100%),
+    linear-gradient(180deg, #171238 0%, #221b52 55%, #151039 100%);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.font-comic {
+  font-family: "Fredoka", system-ui, sans-serif;
+}
+
+/* 玻璃卡片:主内容面板 */
+.cosmic-card {
+  @apply rounded-blob border border-white/10 bg-white/10 shadow-cosmic backdrop-blur-sm;
+}
+
+.cosmic-card-strong {
+  @apply rounded-blob border-2 border-white/15 bg-space-800/80 shadow-cosmic backdrop-blur;
+}
+
+/* 小徽章/胶囊 */
+.chip {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold;
+}
+
+/* 主要糖果按钮 */
+.btn-candy {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-star to-candy px-4 py-2 font-comic font-semibold text-space-900 shadow-planet transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100;
+}
+
+.btn-ghost-cosmic {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3.5 py-2 font-comic text-cream/90 transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+/* 输入 */
+.input-cosmic {
+  @apply w-full rounded-2xl border-2 border-white/15 bg-space-900/70 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-cream/30 focus:border-comet/70;
+}
+
+/* 聊天气泡 */
+.speech-bubble {
+  @apply rounded-2xl rounded-tl-md border border-white/10 bg-white/10 px-3 py-2 text-sm leading-relaxed;
+}
+
+.speech-bubble-user {
+  @apply rounded-2xl rounded-tr-md border border-candy/30 bg-candy/15 px-3 py-2 text-sm leading-relaxed;
+}
+
+/* 阶段轨道 */
+.stage-track {
+  @apply flex items-center gap-0.5 overflow-x-auto;
+}
+
+/* 滚动条暗化 */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-white/15;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============================================================
+   背景宇宙装饰(静态星点 + 右上 UFO + 左下火箭)
+   - 纯追加层:不修改上面任何规则,不影响页面亮度;
+   - 全部 z-index:-1,永远垫在所有 UI 之下,pointer-events:none;
+   - 位置按"最大内容列 1152px(创作台)居中"计算,放在侧边留白里;
+   - 窗口过窄(<1500px)或工作台全宽页(无留白)→ 自动隐藏 UFO/火箭,
+     只保留星点(星点属于背景,任何页面都不遮内容)。
+   ============================================================ */
+
+.deco-stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 11% 8%, rgba(127,216,247,0.4) 0, transparent 100%),
+    radial-gradient(2px 2px at 15% 60%, rgba(255,255,255,0.48) 0, transparent 100%),
+    radial-gradient(3px 3px at 30% 86%, rgba(143,240,196,0.5) 0, transparent 100%),
+    radial-gradient(2px 2px at 57% 25%, rgba(143,240,196,0.46) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 25% 1%, rgba(255,159,216,0.56) 0, transparent 100%),
+    radial-gradient(6px 6px at 73% 30%, rgba(255,159,216,0.52) 0, transparent 100%),
+    radial-gradient(2px 2px at 12% 20%, rgba(255,255,255,0.53) 0, transparent 100%),
+    radial-gradient(3px 3px at 89% 9%, rgba(255,255,255,0.48) 0, transparent 100%),
+    radial-gradient(2px 2px at 64% 71%, rgba(255,209,102,0.55) 0, transparent 100%),
+    radial-gradient(1px 1px at 42% 13%, rgba(255,255,255,0.45) 0, transparent 100%),
+    radial-gradient(4px 4px at 7% 42%, rgba(183,166,255,0.32) 0, transparent 100%),
+    radial-gradient(2px 2px at 91% 47%, rgba(127,216,247,0.49) 0, transparent 100%),
+    radial-gradient(5px 5px at 49% 28%, rgba(255,209,102,0.27) 0, transparent 100%),
+    radial-gradient(5px 5px at 51% 92%, rgba(255,255,255,0.52) 0, transparent 100%),
+    radial-gradient(5px 5px at 87% 60%, rgba(183,166,255,0.31) 0, transparent 100%),
+    radial-gradient(2px 2px at 36% 39%, rgba(255,255,255,0.33) 0, transparent 100%),
+    radial-gradient(1px 1px at 59% 59%, rgba(255,255,255,0.54) 0, transparent 100%),
+    radial-gradient(3px 3px at 71% 13%, rgba(255,255,255,0.29) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 3% 73%, rgba(255,255,255,0.38) 0, transparent 100%),
+    radial-gradient(2px 2px at 84% 84%, rgba(255,255,255,0.56) 0, transparent 100%),
+    radial-gradient(1px 1px at 28% 54%, rgba(183,166,255,0.42) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 55% 8%, rgba(255,255,255,0.41) 0, transparent 100%),
+    radial-gradient(1px 1px at 95% 28%, rgba(143,240,196,0.42) 0, transparent 100%),
+    radial-gradient(3px 3px at 40% 74%, rgba(255,255,255,0.54) 0, transparent 100%),
+    radial-gradient(2px 2px at 76% 45%, rgba(255,255,255,0.28) 0, transparent 100%),
+    radial-gradient(1px 1px at 17% 92%, rgba(255,159,216,0.44) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 97% 79%, rgba(255,209,102,0.37) 0, transparent 100%),
+    radial-gradient(2px 2px at 60% 41%, rgba(255,255,255,0.45) 0, transparent 100%),
+    radial-gradient(1px 1px at 80% 6%, rgba(255,255,255,0.59) 0, transparent 100%),
+    radial-gradient(3.5px 3.5px at 33% 33%, rgba(255,255,255,0.57) 0, transparent 100%),
+    radial-gradient(2px 2px at 8% 58%, rgba(255,209,102,0.48) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 22% 44%, rgba(255,255,255,0.36) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 70% 90%, rgba(143,240,196,0.39) 0, transparent 100%),
+    radial-gradient(1px 1px at 87% 70%, rgba(255,255,255,0.58) 0, transparent 100%),
+    radial-gradient(2px 2px at 47% 47%, rgba(183,166,255,0.3) 0, transparent 100%),
+    radial-gradient(1px 1px at 62% 65%, rgba(255,255,255,0.52) 0, transparent 100%),
+    radial-gradient(3px 3px at 5% 26%, rgba(127,216,247,0.57) 0, transparent 100%),
+    radial-gradient(2px 2px at 76% 64%, rgba(255,255,255,0.45) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 38% 63%, rgba(255,255,255,0.29) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 93% 39%, rgba(255,255,255,0.38) 0, transparent 100%),
+    radial-gradient(1px 1px at 52% 79%, rgba(255,159,216,0.42) 0, transparent 100%),
+    radial-gradient(2px 2px at 24% 78%, rgba(255,255,255,0.57) 0, transparent 100%),
+    radial-gradient(3.5px 3.5px at 67% 55%, rgba(255,255,255,0.38) 0, transparent 100%),
+    radial-gradient(1px 1px at 35% 90%, rgba(127,216,247,0.35) 0, transparent 100%),
+    radial-gradient(2px 2px at 43% 22%, rgba(255,209,102,0.45) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 82% 33%, rgba(255,255,255,0.3) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 13% 15%, rgba(255,255,255,0.26) 0, transparent 100%),
+    radial-gradient(1px 1px at 58% 14%, rgba(255,255,255,0.25) 0, transparent 100%),
+    radial-gradient(2px 2px at 31% 60%, rgba(143,240,196,0.39) 0, transparent 100%),
+    radial-gradient(3px 3px at 90% 54%, rgba(255,255,255,0.5) 0, transparent 100%),
+    radial-gradient(2px 2px at 10% 86%, rgba(255,255,255,0.54) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 26% 12%, rgba(255,255,255,0.25) 0, transparent 100%),
+    radial-gradient(2px 2px at 73% 22%, rgba(255,209,102,0.59) 0, transparent 100%),
+    radial-gradient(1px 1px at 44% 34%, rgba(255,255,255,0.54) 0, transparent 100%),
+    radial-gradient(2px 2px at 66% 32%, rgba(255,255,255,0.42) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 19% 68%, rgba(183,166,255,0.39) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 85% 17%, rgba(255,255,255,0.48) 0, transparent 100%),
+    radial-gradient(1px 1px at 48% 66%, rgba(255,255,255,0.45) 0, transparent 100%),
+    radial-gradient(2px 2px at 96% 10%, rgba(143,240,196,0.54) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 6% 36%, rgba(255,255,255,0.51) 0, transparent 100%),
+    radial-gradient(2px 2px at 54% 96%, rgba(255,209,102,0.31) 0, transparent 100%),
+    radial-gradient(1px 1px at 88% 90%, rgba(255,255,255,0.39) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 32% 4%, rgba(255,159,216,0.49) 0, transparent 100%),
+    radial-gradient(2px 2px at 78% 76%, rgba(255,255,255,0.38) 0, transparent 100%),
+    radial-gradient(1px 1px at 69% 44%, rgba(183,166,255,0.57) 0, transparent 100%),
+    radial-gradient(2px 2px at 39% 45%, rgba(255,255,255,0.34) 0, transparent 100%),
+    radial-gradient(3px 3px at 56% 84%, rgba(255,255,255,0.4) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 74% 96%, rgba(127,216,247,0.49) 0, transparent 100%),
+    radial-gradient(1px 1px at 62% 20%, rgba(255,255,255,0.6) 0, transparent 100%),
+    radial-gradient(2px 2px at 47% 57%, rgba(255,255,255,0.59) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 16% 48%, rgba(255,209,102,0.37) 0, transparent 100%),
+    radial-gradient(2px 2px at 92% 63%, rgba(255,255,255,0.48) 0, transparent 100%),
+    radial-gradient(1px 1px at 27% 26%, rgba(255,159,216,0.42) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 83% 41%, rgba(255,255,255,0.35) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 32%, rgba(255,255,255,0.4) 0, transparent 100%),
+    radial-gradient(2px 2px at 4% 16%, rgba(143,240,196,0.3) 0, transparent 100%),
+    radial-gradient(1px 1px at 71% 3%, rgba(255,255,255,0.42) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 21% 96%, rgba(255,255,255,0.46) 0, transparent 100%),
+    radial-gradient(1px 1px at 34% 78%, rgba(183,166,255,0.37) 0, transparent 100%),
+    radial-gradient(2px 2px at 68% 80%, rgba(255,255,255,0.45) 0, transparent 100%),
+    radial-gradient(3.5px 3.5px at 46% 3%, rgba(255,255,255,0.46) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 94% 85%, rgba(255,209,102,0.26) 0, transparent 100%),
+    radial-gradient(1px 1px at 12% 33%, rgba(255,255,255,0.27) 0, transparent 100%),
+    radial-gradient(2px 2px at 77% 53%, rgba(255,255,255,0.29) 0, transparent 100%),
+    radial-gradient(1px 1px at 41% 83%, rgba(255,255,255,0.41) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 60% 47%, rgba(143,240,196,0.29) 0, transparent 100%),
+    radial-gradient(2px 2px at 23% 88%, rgba(255,255,255,0.42) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 40%, rgba(255,255,255,0.56) 0, transparent 100%),
+    radial-gradient(1px 1px at 88% 49%, rgba(255,159,216,0.57) 0, transparent 100%),
+    radial-gradient(2px 2px at 7% 5%, rgba(255,255,255,0.56) 0, transparent 100%),
+    radial-gradient(1px 1px at 74% 35%, rgba(183,166,255,0.48) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 98% 96%, rgba(255,255,255,0.48) 0, transparent 100%),
+    radial-gradient(1px 1px at 37% 50%, rgba(255,209,102,0.42) 0, transparent 100%),
+    radial-gradient(2px 2px at 52% 72%, rgba(255,255,255,0.28) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 65% 7%, rgba(255,255,255,0.3) 0, transparent 100%),
+    radial-gradient(2px 2px at 18% 52%, rgba(255,255,255,0.55) 0, transparent 100%),
+    radial-gradient(1px 1px at 80% 68%, rgba(143,240,196,0.28) 0, transparent 100%),
+    radial-gradient(2px 2px at 29% 68%, rgba(255,255,255,0.36) 0, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 58%, rgba(255,255,255,0.46) 0, transparent 100%),
+    radial-gradient(2.5px 2.5px at 91% 75%, rgba(255,255,255,0.28) 0, transparent 100%),
+    radial-gradient(1px 1px at 2% 92%, rgba(255,159,216,0.55) 0, transparent 100%),
+    radial-gradient(2px 2px at 63% 90%, rgba(255,255,255,0.32) 0, transparent 100%);
+  background-repeat: no-repeat;
+}
+
+
+/* 大件装饰:右上有光幕的 UFO、左下火箭。只放"侧边留白足够宽"的窗口 */
+.ufo,
+.rocket {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 窄窗口:放不进留白就隐藏,绝不让装饰压界面 */
+@media (max-width: 1499px) {
+  .ufo,
+  .rocket {
+    display: none;
+  }
+}
+/* 工作台等全宽页:没有侧边留白 → 隐藏 UFO/火箭(main.tsx 按路由打 body[data-page]) */
+body[data-page="workbench"] .ufo,
+body[data-page="workbench"] .rocket {
+  display: none;
+}
+
+/* ---------- UFO(右上,黄蓝机身 + 光幕) ---------- */
+.ufo {
+  right: calc((100vw - 1152px) / 2 - 170px);
+  top: 8%;
+  width: 150px;
+  height: 70px;
+  animation: ufo-bob 7s ease-in-out infinite;
+}
+@keyframes ufo-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-10px) rotate(2deg); }
+}
+.ufo .dome {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 54px;
+  height: 46px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 46% 46%;
+  background: radial-gradient(ellipse at 36% 28%,
+    rgba(240,250,255,.98) 0%,
+    rgba(180,230,255,.8) 40%,
+    rgba(183,166,255,.4) 70%,
+    transparent 100%);
+  box-shadow: inset 0 -6px 12px rgba(70,58,148,.28);
+}
+.ufo .dome::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  width: 12px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.8);
+  transform: rotate(-18deg);
+}
+.ufo .saucer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffe9a8 0%, #ffd166 34%, #3f7be0 66%, #2b5bc0 100%);
+  box-shadow: inset 0 5px 8px rgba(255,255,255,.3), inset 0 -4px 8px rgba(12,9,36,.5), 0 14px 26px -14px rgba(255,209,102,.3);
+}
+.ufo .rim {
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: 12px;
+  height: 9px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff3c4 0%, #f5b83e 55%, #d98f1f 100%);
+}
+.ufo .light {
+  position: absolute;
+  bottom: 13px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.ufo .light.l0 { left: 14%; background: radial-gradient(circle at 40% 35%, #fff6e4, rgba(255,209,102,.85) 65%); }
+.ufo .light.l1 { left: 32%; background: radial-gradient(circle at 40% 35%, #fff6e4, rgba(143,240,196,.85) 65%); }
+.ufo .light.l2 { left: 50%; background: radial-gradient(circle at 40% 35%, #fff6e4, rgba(127,216,247,.85) 65%); }
+.ufo .light.l3 { left: 68%; background: radial-gradient(circle at 40% 35%, #fff6e4, rgba(255,159,216,.85) 65%); }
+.ufo .light.l4 { left: 86%; background: radial-gradient(circle at 40% 35%, #fff6e4, rgba(255,209,102,.85) 65%); }
+.ufo .beam {
+  position: absolute;
+  left: 50%;
+  top: 62px;
+  width: 120px;
+  height: 190px;
+  transform: translateX(-50%);
+  clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg,
+    rgba(255,224,140,.4) 0%,
+    rgba(127,216,247,.16) 45%,
+    rgba(183,166,255,.08) 75%,
+    transparent 100%);
+}
+
+/* ---------- 火箭(左下偏下,红鼻锥/尾翼 + 黄火焰) ---------- */
+.rocket {
+  left: calc((100vw - 1152px) / 2 - 170px);
+  top: 52%;
+  width: 110px;
+  height: 220px;
+  animation: rocket-bob 8s ease-in-out infinite;
+}
+@keyframes rocket-bob {
+  0%, 100% { transform: translateY(0) rotate(2.5deg); }
+  50%      { transform: translateY(-12px) rotate(-2deg); }
+}
+.rocket .body {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  width: 52px;
+  height: 120px;
+  transform: translateX(-50%);
+  border-radius: 26px 26px 14px 14px;
+  background: linear-gradient(90deg, #8a7fc4 0%, #e8e2ff 22%, #fff9ea 50%, #b9aef0 100%);
+  box-shadow: inset 4px 0 8px rgba(255,255,255,.35), inset -6px 0 10px rgba(43,30,100,.25);
+}
+.rocket .nose {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 52px;
+  height: 52px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #ffb3a8 0%, #ff5f52 55%, #d92f28 100%);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.rocket .window {
+  position: absolute;
+  left: 50%;
+  top: 74px;
+  width: 26px;
+  height: 26px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 32%, #dff3ff 0%, #7fd8f7 45%, #3f7be0 85%, #2b5bc0 100%);
+  border: 4px solid rgba(255,255,255,.55);
+  box-shadow: 0 2px 6px rgba(12,9,36,.4);
+}
+.rocket .fin {
+  position: absolute;
+  top: 108px;
+  width: 34px;
+  height: 58px;
+  background: linear-gradient(180deg, #ffb3a8 0%, #ff5f52 60%, #d92f28 100%);
+}
+.rocket .fin.left  { left: 6px;  clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+.rocket .fin.right { right: 6px; clip-path: polygon(0 0, 100% 100%, 0 100%); }
+.rocket .nozzle {
+  position: absolute;
+  left: 50%;
+  top: 146px;
+  width: 30px;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(180deg, #8a7fc4, #463a94);
+}
+.rocket .flame {
+  position: absolute;
+  left: 50%;
+  top: 166px;
+  width: 60px;
+  height: 54px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255,209,102,.55) 0%, rgba(255,159,216,.35) 55%, transparent 100%);
+  clip-path: polygon(18% 0, 82% 0, 50% 100%);
+}
