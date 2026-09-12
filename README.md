@@ -152,6 +152,7 @@ curl -X POST localhost:18766/api/v1/projects/1/confirm -H 'Content-Type: applica
 - **SQLite 一库装天下**:业务表 + LangGraph checkpoint 同文件,备份即全量;换 Postgres 只改连接串(并换 checkpoint saver);
 - **两套测试风格**:单测注入 transport 走生产代码路径(请求构造/解析不旁路);集成测试用真实 TestClient + 真实 DB 文件 + fake provider 全流程过 6 门到 succeeded —— 每条业务语义都有回归用例锁死。
 
+
 ## 结构
 
 ```

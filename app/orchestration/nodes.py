@@ -155,7 +155,7 @@ async def _produce(state: RunState, *, stage: str) -> dict[str, Any]:
             ).scalars().first()
             if last_user is not None and last_user.content.strip() not in ("", "通过"):
                 feedback = last_user.content.strip()[:400]
-            logger.warning("[nodes] %s feedback_len=%d", stage, len(feedback))
+            logger.debug("[nodes] %s feedback_len=%d", stage, len(feedback))
         if stage in ("plan_outline", "plan_characters", "plan_shots"):
             payload = await producer(project, get_settings(), feedback=feedback)
         elif stage in ("render_characters", "render_shots"):
